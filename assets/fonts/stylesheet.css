@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'openbold';
+    src: url('OpenSans-Bold.ttf') ;
+
+    font-weight: 300;
+    font-style: bold;
+}
+
+
+@font-face {
+    font-family: 'openboldit';
+    src: url('OpenSans-BoldItalic.ttf') ;
+
+    font-weight: 300;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'openli';
+    src: url('OpenSans-Light.ttf');
+
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'openlightit';
+    src: url('OpenSans-LightItalic.ttf') ;
+
+    font-weight: 300;
+    
+}
+
+
