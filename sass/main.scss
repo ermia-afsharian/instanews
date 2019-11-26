@@ -29,12 +29,16 @@ html{
     min-height: 100%;
     position: relative;
 }
+a{
+    text-decoration: none;
+}
 header{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: blanchedalmond;
+    margin: 100px;
     height: 500px;
     font-family: openli;
     @include tablet{
@@ -111,10 +115,23 @@ main{
     div{
         padding: 10px;
         color: #ffffff;
+        font-family: openli;
         font-size : 16px;
         background:rgba(20, 20, 20, .5);
         width: inherit;
-    
+        transition: background .3s ease;
+        @include tablet{
+            font-size : 13px;
+        
+        }  
+        @include desktop{
+            font-size: 16;
+        }
+          
+    &:hover{
+        background:rgba(20, 20, 20, .8);
+
+    }
     }
 
 

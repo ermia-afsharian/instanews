@@ -18,12 +18,10 @@
                     <option value="world">world</option>
                     <option value="politics">politics</option>
                     <option value="sports">sports</option>
-                    <option value="tech">tech</option>
                     <option value="science">science</option>
                     <option value="obituaries">obituaries</option>
                     <option value="upshot">The upshot</option>
                     <option value="business">business</option>
-                    <option value="us">U.S.</option>
             </select>
         </div>
     </header>
@@ -47,6 +45,9 @@
     
     // ----------------------------------------------
     $( document ).ready(function() {
+      $('header').css('margin','100px')
+      $('header').css('transform','scale(1.2)')
+
       $("select").on("change", function(){
         let yourl = "https://api.nytimes.com/svc/topstories/v2/health.json?api-key=HCZiBZAltzCMkpqAAYGGv88UiSo23GCa"
 
@@ -54,6 +55,11 @@
           yourl = yourl.replace("health",$('select').val());
           console.log(yourl)
             
+          if ($('select').val()!=='none') {
+                $('main').show();
+                $('header').css('margin','0px')
+                $('header').css('transform','scale(1)')
+           
         $.ajax({
           method: "GET",
           url: yourl
@@ -63,15 +69,16 @@
              $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url:" " });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
             });
         }).fail(function(data){
-            alert('SORRY! -_("/)_-  ');
+            alert('SORRY! -_("/)_- ');
           });
+        }else{
+          $('main').hide();
+          $('header').css('margin','100px')
+          $('header').css('transform','scale(1.2)')
 
-          if ($('select').val()=='none') {
-                $('main').hide();
+          }   
 
-          } else{
-            $('main').slideDown(1000);
-          }
+          
     })
 });
 
