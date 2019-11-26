@@ -66,7 +66,7 @@
         }).done(function(data) {
           $.each(data.results, function(key, value) {
             console.log('data');
-             $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url:" " });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
+             $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url: "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
             });
         }).fail(function(data){
             alert('SORRY! -_("/)_- ');
