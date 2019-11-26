@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="build/css/style.min.css">
     <link rel="stylesheet" href="assets/fonts/stylesheet.css">
 </head>
 <body>
@@ -13,36 +13,73 @@
         <div><img  class="logo" src="assets/images/nyt-logo.svg" alt="nyt-logo"></div>
         <div class="section">
             <h2>Choode a section:</h2>
-            <select name="Select1" size="1">
-                    <option value="">- Please select a section -</option>
-                    <option value"volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="ford">Ford</option>
-                    <option value="toyota">Toyota</option>
-                    <option value="aston">Aston Martin</option>
-                    <option value="alfa">Alfa Romeo</option>
+            <select name="Select1" size="1" id="dropDown">
+                    <option value="none">Please select a section</option>
+                    <option value="world">world</option>
+                    <option value="politics">politics</option>
+                    <option value="sports">sports</option>
+                    <option value="tech">tech</option>
+                    <option value="science">science</option>
+                    <option value="obituaries">obituaries</option>
+                    <option value="upshot">The upshot</option>
+                    <option value="business">business</option>
+                    <option value="us">U.S.</option>
             </select>
         </div>
     </header>
     <main>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        <section><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non recusandae itaque quod laudantium labore enim cumque veritatis, consequatur quaerat mollitia voluptatum accusantium sequi necessitatibus id quidem quia quae nesciunt.</div></section>
-        
+               
     </main>
     <footer>
         <p>&copy; Copyright 2019 INSTANEWS</p>
     </footer>
 
     <script src="./build/js/index.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    
+    $( ".logo" ).click(function() {
+    $( 'main' ).slideToggle(1000);
+    });
+
+    });
+    
+    // ----------------------------------------------
+    $( document ).ready(function() {
+      $("select").on("change", function(){
+        let yourl = "https://api.nytimes.com/svc/topstories/v2/health.json?api-key=HCZiBZAltzCMkpqAAYGGv88UiSo23GCa"
+
+          $('main').empty();
+          yourl = yourl.replace("health",$('select').val());
+          console.log(yourl)
+            
+        $.ajax({
+          method: "GET",
+          url: yourl
+        }).done(function(data) {
+          $.each(data.results, function(key, value) {
+            console.log('data');
+             $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url:" " });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
+            });
+        }).fail(function(data){
+            alert('SORRY! -_("/)_-  ');
+          });
+
+          if ($('select').val()=='none') {
+                $('main').hide();
+
+          } else{
+            $('main').slideDown(1000);
+          }
+    })
+});
+
+
+    
+    
+    </script>
 </body>
 </html>
+    
+    
