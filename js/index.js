@@ -17,9 +17,11 @@
           method: 'GET',
           url: yourl
         }).always(function(){
-          
+          $('.load').css('display','block')
         })
         .done(function(data) {
+          $('.load').css('display','none')
+
           $.each(data.results, function(key, value) {
              $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url: "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
             });
