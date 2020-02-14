@@ -22,9 +22,11 @@
         .done(function(data) {
           $('.load').css('display','none')
 
-          $.each(data.results, function(key, value) {
-             $('main').append(`<section class='news' style="background-image:url(${value.multimedia[4]?value.multimedia[4].url: "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" });"> <a href='${value.url}'><div>${data.results[key].abstract}</div></a></section>`)
-            });
+          for (let i = 0; i < 12; i++) {
+
+             $('main').append(`<section class='news' style="background-image:url(${data.results[i].multimedia[4]?data.results[i].multimedia[4].url: "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" });"> <a href='${data.results[i].url}'><div>${data.results[i].abstract}</div></a></section>`)
+            
+          }
         }).fail(function(data){
             alert('SORRY! -_("/)_- ');
           });

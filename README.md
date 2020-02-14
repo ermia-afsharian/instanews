@@ -4,7 +4,7 @@
 
 INSTANEWS is the web site to get news of the category of your choosing from NYtimes easier.
 
-
+![instanews-image](instanews.jpg)
 
 ## Quick start
 
