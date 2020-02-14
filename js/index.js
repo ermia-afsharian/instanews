@@ -3,10 +3,10 @@
       $('header').css('transform','scale(1.2)')
 
       $('select').on('change', function(){
-        let yourl = 'https://api.nytimes.com/svc/topstories/v2/health.json?api-key=HCZiBZAltzCMkpqAAYGGv88UiSo23GCa'
+        let url = 'https://api.nytimes.com/svc/topstories/v2/health.json?api-key=HCZiBZAltzCMkpqAAYGGv88UiSo23GCa'
 
           $('main').empty();
-          yourl = yourl.replace('health',$('select').val());
+          url = url.replace('health',$('select').val());
             
           if ($('select').val()!=='none') {
                 $('main').show();
@@ -15,7 +15,7 @@
            
         $.ajax({
           method: 'GET',
-          url: yourl
+          url: url
         }).always(function(){
           $('.load').css('display','block')
         })
